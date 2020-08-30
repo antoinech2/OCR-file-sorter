@@ -54,7 +54,7 @@ available_matieres_all = {"FR" : "Français", "MT" : "Maths", "PH" : "Physique"}
 def ScanFile(datas, file_arg, max_logs = False, start_thresh_arg = 90, max_thresh_arg = 250, strict = False):
     global thresh, current_logs, is_scanning, start_thresh, max_thresh, file, final_result, open_correction_window
 
-    start_thresh = start_thresh_arg
+    start_thresh = 240#start_thresh_arg
     max_thresh = max_thresh_arg
     file = file_arg
     #interface.fenetre.UpdateProgressBar(80)

@@ -73,8 +73,8 @@ class Window():
         self.data = master
 
         self.fenetre = Tk()
-        self.fenetre.geometry("600x840")
-        self.fenetre.title("OCR File Sorter")
+        #self.fenetre.geometry("600x840")
+        #self.fenetre.title("OCR File Sorter")
 
         self.Radiobuttonsgroups = [
             {"variable" : IntVar(), "text": "Choix de sélection des fichiers :", "default" : self.data.selection_type, "buttons" : [("Sélection automatique", "Tous les fichiers sont traités automatiquement dès qu'ils sont ajoutés au dossier d'entée"), ("Sélection manuelle", "Seul le fichier sélectionné sera traité")]},
@@ -175,8 +175,8 @@ class Window():
         if self.data.is_running:
             if ocr.is_scanning:
                 if ocr.open_correction_window == True:
-                    self.CorrectionWindow(ocr.file, ocr.final_result)
                     ocr.open_correction_window = False
+                    self.CorrectionWindow(ocr.file, ocr.final_result)
                 self._UpdateProgressBar()
                 self.status_label.configure(text="Statut : Traitement de '{}' en cours... ({}/{})".format(os.path.basename(ocr.file), ocr.thresh, ocr.max_thresh))
             else:
@@ -257,7 +257,7 @@ class Window():
         self.path_validate.configure(text = "Valider", style = "TButton")
 
     def CorrectionWindow(self, file, results):
-        self.correction = Tk()
+        self.correction = Toplevel(self.fenetre)
         self.results = results
         self.file = file
 
@@ -317,8 +317,7 @@ class Window():
 
         self.correction_validate_button = Button(self.correction, text="Valider", command=self.ValidateCorrection)
         self.correction_validate_button.grid(row=11, column=0, columnspan=2)
-
-        self.correction.mainloop()
+        #self.correction.mainloop()
 
     def ValidateCorrection(self):
         for cur_listbox in self.correction_listboxs:
